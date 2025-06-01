@@ -362,16 +362,24 @@ const Hero = () => {
 	useEffect(() => {
 		if (!heroContainerRef.current || !redefineRef.current) return;
 
-		// Advanced physics configuration
+		// Ultra-advanced physics configuration for maximum complexity
 		const physics = {
-			magneticStrength: 35,
-			elasticity: 0.15,
-			damping: 0.85,
-			maxDistance: 1.2,
-			rotationMultiplier: 25,
-			scaleRange: [0.9, 1.3],
-			glitchThreshold: 0.7,
-			particleForce: 80,
+			magneticStrength: 65,
+			elasticity: 0.08,
+			damping: 0.92,
+			maxDistance: 2.2,
+			rotationMultiplier: 45,
+			scaleRange: [0.7, 1.8],
+			glitchThreshold: 0.5,
+			particleForce: 180,
+			waveAmplitude: 25,
+			spiralForce: 15,
+			gravityWell: 0.5,
+			dimensionalRift: 12,
+			quantumFlux: 0.8,
+			cosmicForce: 30,
+			timeDistortion: 0.6,
+			realityBend: 1.2
 		};
 
 		// Optimized mouse position tracking
@@ -393,6 +401,8 @@ const Hero = () => {
 		const updateCharacterPhysics = () => {
 			if (!characterRefs.current.length) return;
 
+			const time = Date.now() * 0.001;
+
 			characterRefs.current.forEach((char, index) => {
 				const distance = Math.sqrt(
 					Math.pow(currentMousePos.x, 2) + Math.pow(currentMousePos.y, 2)
@@ -403,46 +413,80 @@ const Hero = () => {
 				const strength = Math.max(0, 1 - normalizedDistance);
 				const dampedStrength = strength * physics.damping;
 
-				// Ultra-complex magnetic field calculations
+				// Ultra-complex cosmic force calculations with multiple harmonics
+				const cosmicTime = time * 0.3;
+				const charOffset = index * 0.8;
+				
+				// Multi-layered wave interference system
+				const primaryWave = Math.sin(cosmicTime * 2 + charOffset) * physics.waveAmplitude * strength;
+				const secondaryWave = Math.cos(cosmicTime * 1.3 + charOffset * 1.5) * physics.waveAmplitude * 0.7 * strength;
+				const tertiaryWave = Math.sin(cosmicTime * 3.7 + charOffset * 0.4) * physics.waveAmplitude * 0.4 * strength;
+				
+				const waveX = primaryWave + secondaryWave * 0.6 + tertiaryWave * 0.3;
+				const waveY = (Math.cos(cosmicTime * 1.8 + charOffset) + 
+				              Math.sin(cosmicTime * 2.4 + charOffset * 1.2) * 0.5) * 
+				              physics.waveAmplitude * strength;
+				
+				// Advanced spiral force with quantum fluctuations
+				const spiralAngle = cosmicTime + charOffset;
+				const quantumNoise = Math.sin(time * 15 + charOffset * 3) * physics.quantumFlux;
+				const spiralRadius = physics.spiralForce * (1 + quantumNoise) * strength;
+				const spiralX = Math.cos(spiralAngle) * spiralRadius + Math.sin(spiralAngle * 2.3) * spiralRadius * 0.3;
+				const spiralY = Math.sin(spiralAngle) * spiralRadius + Math.cos(spiralAngle * 1.7) * spiralRadius * 0.4;
+
+				// Multi-dimensional gravity well with time distortion
+				const timeWarp = 1 + Math.sin(time * 4 + charOffset) * physics.timeDistortion * strength;
+				const gravityX = currentMousePos.x * physics.gravityWell * Math.pow(strength, 2) * timeWarp;
+				const gravityY = currentMousePos.y * physics.gravityWell * Math.pow(strength, 2) * timeWarp;
+
+				// Dimensional rift forces
+				const riftAngle = time * 5 + charOffset * 2;
+				const riftForceX = Math.sin(riftAngle) * physics.dimensionalRift * Math.pow(strength, 1.5);
+				const riftForceY = Math.cos(riftAngle * 1.3) * physics.dimensionalRift * Math.pow(strength, 1.5);
+
+				// Cosmic force with reality bending
+				const cosmicAngle = time * 0.7 + charOffset * 1.3;
+				const realityBend = physics.realityBend * strength;
+				const cosmicX = Math.cos(cosmicAngle) * physics.cosmicForce * realityBend + 
+				               Math.sin(cosmicAngle * 2.1) * physics.cosmicForce * 0.5 * realityBend;
+				const cosmicY = Math.sin(cosmicAngle) * physics.cosmicForce * realityBend + 
+				               Math.cos(cosmicAngle * 1.6) * physics.cosmicForce * 0.6 * realityBend;
+
+				// Ultimate magnetic field combining all forces
 				const magneticField = {
-					x:
-						currentMousePos.x *
-						physics.magneticStrength *
-						dampedStrength *
-						(index % 2 === 0 ? 1 : -0.7) *
-						(1 + Math.sin(Date.now() * 0.001 + index) * 0.3),
-					y:
-						currentMousePos.y *
-						physics.magneticStrength *
-						dampedStrength *
-						(index % 3 === 0 ? 1 : -0.8) *
-						(1 + Math.cos(Date.now() * 0.0015 + index) * 0.2),
+					x: currentMousePos.x * physics.magneticStrength * dampedStrength * 
+					   (index % 2 === 0 ? 1 : -0.7) + waveX + spiralX + gravityX + riftForceX + cosmicX,
+					y: currentMousePos.y * physics.magneticStrength * dampedStrength * 
+					   (index % 3 === 0 ? 1 : -0.8) + waveY + spiralY + gravityY + riftForceY + cosmicY,
 				};
 
-				// Advanced 3D rotation with momentum
+				// Hyper-advanced 3D rotation with orbital mechanics and quantum tunneling
+				const orbitAngle = time * 0.5 + charOffset;
+				const quantumOrbit = time * 12 + charOffset * 4;
+				const orbitRadius = strength * 15 + Math.sin(quantumOrbit) * 5;
+				
 				const rotation3D = {
-					x:
-						currentMousePos.y *
-						physics.rotationMultiplier *
-						dampedStrength *
-						(1 + Math.sin(Date.now() * 0.002 + index * 0.5) * 0.4),
-					y:
-						currentMousePos.x *
-						physics.rotationMultiplier *
-						dampedStrength *
-						(1 + Math.cos(Date.now() * 0.0025 + index * 0.3) * 0.3),
-					z: (currentMousePos.x + currentMousePos.y) * 0.5 * 8 * dampedStrength,
+					x: currentMousePos.y * physics.rotationMultiplier * dampedStrength + 
+					   Math.sin(orbitAngle) * orbitRadius + 
+					   Math.cos(quantumOrbit) * 8 * strength,
+					y: currentMousePos.x * physics.rotationMultiplier * dampedStrength + 
+					   Math.cos(orbitAngle) * orbitRadius + 
+					   Math.sin(quantumOrbit * 1.4) * 6 * strength,
+					z: (currentMousePos.x + currentMousePos.y) * 0.5 * 18 * dampedStrength + 
+					   Math.sin(time + charOffset) * 12 * strength +
+					   Math.cos(time * 3 + charOffset * 2) * 8 * strength,
 				};
 
-				// Dynamic scaling with breathing effect
-				const breathingScale =
-					1 + Math.sin(Date.now() * 0.003 + index * 0.7) * 0.02;
-				const magneticScale =
-					physics.scaleRange[0] +
+				// Multi-phase dynamic scaling with harmonic resonance
+				const baseFreq = 3 + charOffset * 0.5;
+				const breathingScale = 1 + Math.sin(time * baseFreq + charOffset * 0.7) * 0.04;
+				const pulseScale = 1 + Math.sin(time * (baseFreq * 2) + charOffset * 1.2) * 0.03 * strength;
+				const resonanceScale = 1 + Math.sin(time * (baseFreq * 0.5) + charOffset) * 0.02;
+				const magneticScale = physics.scaleRange[0] + 
 					(physics.scaleRange[1] - physics.scaleRange[0]) * dampedStrength;
-				const finalScale = magneticScale * breathingScale;
+				const finalScale = magneticScale * breathingScale * pulseScale * resonanceScale;
 
-				// Apply optimized transformations
+				// Apply ultra-complex transformations with momentum
 				gsap.to(char, {
 					x: magneticField.x,
 					y: magneticField.y,
@@ -450,54 +494,79 @@ const Hero = () => {
 					rotationY: rotation3D.y,
 					rotationZ: rotation3D.z,
 					scale: finalScale,
-					duration: 0.4,
+					skewX: currentMousePos.x * 8 * strength + Math.sin(time * 6 + charOffset) * 3 * strength,
+					skewY: currentMousePos.y * 5 * strength + Math.cos(time * 4 + charOffset) * 2 * strength,
+					duration: 0.25,
 					ease: "power2.out",
 					overwrite: "auto",
 				});
 
-				// Ultra-dynamic color and filter effects
-				const time = Date.now() * 0.001;
-				const hue =
-					(index * 45 +
-						currentMousePos.x * 200 +
-						currentMousePos.y * 150 +
-						time * 50) %
-					360;
-				const saturation = 100 + dampedStrength * 150;
-				const brightness = 100 + dampedStrength * 80 + Math.sin(time + index) * 20;
-				const contrast = 100 + dampedStrength * 100;
-				const blur =
-					normalizedDistance > physics.glitchThreshold ? gsap.utils.random(0, 2) : 0;
+				// Ultra-smooth, completely non-blinking color system with cosmic hues
+				const timePhase = time * 0.15; // Slowed down for smoother transitions
+				const baseHue = (charOffset * 45 + timePhase * 60) % 360;
+				const mouseHueInfluence = Math.atan2(currentMousePos.y, currentMousePos.x) * (180 / Math.PI);
+				const strengthHue = strength * 120;
+				const cosmicHue = Math.sin(timePhase + charOffset) * 30;
+				
+				const finalHue = (baseHue + mouseHueInfluence * 0.3 + strengthHue + cosmicHue) % 360;
+				
+				// Smooth saturation and brightness oscillations
+				const baseSaturation = 120;
+				const saturationWave = Math.sin(timePhase * 2 + charOffset) * 20;
+				const strengthSaturation = dampedStrength * 60;
+				const finalSaturation = Math.min(200, baseSaturation + saturationWave + strengthSaturation);
+				
+				const baseBrightness = 110;
+				const brightnessWave = Math.cos(timePhase * 1.5 + charOffset * 1.3) * 15;
+				const strengthBrightness = dampedStrength * 25;
+				const finalBrightness = Math.min(160, baseBrightness + brightnessWave + strengthBrightness);
+				
+				const baseContrast = 110;
+				const contrastWave = Math.sin(timePhase * 1.8 + charOffset * 0.9) * 20;
+				const strengthContrast = dampedStrength * 40;
+				const finalContrast = Math.min(180, baseContrast + contrastWave + strengthContrast);
+				
+				// Extremely smooth blur with gentle oscillation
+				const blurBase = normalizedDistance > physics.glitchThreshold ? 1 : 0;
+				const blurWave = Math.sin(time * 2 + charOffset) * 0.5;
+				const finalBlur = Math.max(0, blurBase + blurWave + strength * 0.8);
 
 				gsap.to(char, {
-					filter: `hue-rotate(${hue}deg) saturate(${saturation}%) brightness(${brightness}%) contrast(${contrast}%) blur(${blur}px)`,
-					duration: 0.6,
-					ease: "power2.out",
+					filter: `hue-rotate(${finalHue}deg) saturate(${finalSaturation}%) brightness(${finalBrightness}%) contrast(${finalContrast}%) blur(${finalBlur}px)`,
+					duration: 1.2, // Longer duration for smoother transitions
+					ease: "sine.inOut",
 				});
 
-				// Enhanced particle field interaction
+				// Hyper-enhanced particle field with cosmic storm effects
 				const container = particleRefs.current[index];
-				if (container && strength > 0.1) {
+				if (container && strength > 0.03) {
 					const particles = container.querySelectorAll(".particle");
-					particles.forEach(particle => {
+					particles.forEach((particle, pIndex) => {
+						const particleAngle = time * 1.5 + pIndex * 1.2 + charOffset;
+						const particleRadius = 25 + strength * 60;
+						const quantumJitter = Math.sin(time * 20 + pIndex * 5) * 3 * strength;
+						
 						const particleForce = {
-							x:
-								magneticField.x * 0.8 +
-								gsap.utils.random(-physics.particleForce, physics.particleForce) *
-									strength,
-							y:
-								magneticField.y * 0.8 +
-								gsap.utils.random(-physics.particleForce, physics.particleForce) *
-									strength,
+							x: magneticField.x * 0.7 + 
+							   Math.cos(particleAngle) * particleRadius * strength +
+							   gsap.utils.random(-physics.particleForce, physics.particleForce) * strength * 0.4 +
+							   quantumJitter,
+							y: magneticField.y * 0.7 + 
+							   Math.sin(particleAngle) * particleRadius * strength +
+							   gsap.utils.random(-physics.particleForce, physics.particleForce) * strength * 0.4 +
+							   quantumJitter * 0.8,
 						};
+
+						const particleScale = 1 + strength * 4 + Math.sin(time * 8 + pIndex) * 0.5;
+						const particleRotation = rotation3D.z * 2 + time * 180 + pIndex * 45;
 
 						gsap.to(particle, {
 							x: particleForce.x,
 							y: particleForce.y,
-							opacity: strength * 0.9,
-							scale: 1 + strength * 2,
-							rotation: rotation3D.z * 2,
-							duration: 0.5,
+							opacity: strength * 0.9 * (0.6 + Math.sin(time * 4 + pIndex) * 0.4),
+							scale: particleScale,
+							rotation: particleRotation,
+							duration: 0.3,
 							ease: "power2.out",
 							overwrite: "auto",
 						});
@@ -518,75 +587,181 @@ const Hero = () => {
 		};
 
 		const handleMouseEnter = () => {
-			// Epic entrance effects with optimized performance
+			// Ultra-complex cosmic entrance effects with reality distortion
 			characterRefs.current.forEach((char, index) => {
-				// Quantum glitch sequence
-				const quantumGlitch = gsap.timeline({ repeat: 2 });
-
-				quantumGlitch
+				// Multi-dimensional quantum glitch with controlled chaos and smooth transitions
+				const quantumPhases = gsap.timeline({ repeat: 2 });
+				
+				// Phase 1: Reality fragmentation with cosmic force
+				quantumPhases
 					.to(char, {
-						x: () => gsap.utils.random(-15, 15),
-						y: () => gsap.utils.random(-10, 10),
-						skewX: () => gsap.utils.random(-25, 25),
-						skewY: () => gsap.utils.random(-10, 10),
-						filter: `blur(${gsap.utils.random(1, 4)}px) contrast(${gsap.utils.random(150, 300)}%) hue-rotate(${gsap.utils.random(0, 360)}deg)`,
-						duration: 0.08,
-						ease: "power4.inOut",
+						x: () => gsap.utils.random(-35, 35),
+						y: () => gsap.utils.random(-25, 25),
+						z: () => gsap.utils.random(-50, 50),
+						skewX: () => gsap.utils.random(-45, 45),
+						skewY: () => gsap.utils.random(-20, 20),
+						rotationX: () => gsap.utils.random(-60, 60),
+						rotationY: () => gsap.utils.random(-60, 60),
+						rotationZ: () => gsap.utils.random(-45, 45),
+						scale: () => gsap.utils.random(0.6, 1.5),
+						duration: 0.04,
+						ease: "power4.inOut"
 					})
+					// Phase 2: Dimensional rift expansion
+					.to(char, {
+						x: () => gsap.utils.random(-20, 20),
+						y: () => gsap.utils.random(-15, 15),
+						z: () => gsap.utils.random(-30, 30),
+						skewX: () => gsap.utils.random(-30, 30),
+						skewY: () => gsap.utils.random(-15, 15),
+						rotationX: () => gsap.utils.random(-90, 90),
+						rotationY: () => gsap.utils.random(-90, 90),
+						rotationZ: () => gsap.utils.random(-60, 60),
+						scale: () => gsap.utils.random(0.7, 1.4),
+						duration: 0.06,
+						ease: "elastic.out(2, 0.8)"
+					})
+					// Phase 3: Quantum tunneling effect
+					.to(char, {
+						x: () => gsap.utils.random(-8, 8),
+						y: () => gsap.utils.random(-6, 6),
+						z: () => gsap.utils.random(-15, 15),
+						skewX: () => gsap.utils.random(-15, 15),
+						skewY: () => gsap.utils.random(-8, 8),
+						rotationX: () => gsap.utils.random(-30, 30),
+						rotationY: () => gsap.utils.random(-30, 30),
+						rotationZ: () => gsap.utils.random(-20, 20),
+						scale: () => gsap.utils.random(0.85, 1.2),
+						duration: 0.08,
+						ease: "expo.out"
+					})
+					// Phase 4: Reality stabilization with harmonic convergence
 					.to(char, {
 						x: 0,
 						y: 0,
+						z: 0,
 						skewX: 0,
 						skewY: 0,
-						filter: "blur(0px) contrast(100%) hue-rotate(0deg)",
-						duration: 0.12,
-						ease: "elastic.out(1, 0.8)",
+						rotationX: 0,
+						rotationY: 0,
+						rotationZ: 0,
+						scale: 1,
+						duration: 0.2,
+						ease: "back.out(3)",
+						delay: index * 0.008
 					});
 
-				// Particle supernova effect
+				// Hyper-enhanced particle supernova with gravitational waves
 				const container = particleRefs.current[index];
 				if (container) {
 					const particles = container.querySelectorAll(".particle");
 					particles.forEach((particle, pIndex) => {
-						gsap.fromTo(
-							particle,
+						const primaryAngle = (pIndex / particles.length) * Math.PI * 2;
+						const secondaryAngle = primaryAngle + Math.PI * 0.5;
+						const radius = gsap.utils.random(120, 300);
+						const secondaryRadius = gsap.utils.random(80, 200);
+						
+						// Primary explosion trajectory
+						const targetX = Math.cos(primaryAngle) * radius;
+						const targetY = Math.sin(primaryAngle) * radius;
+						
+						// Secondary gravitational wave effect
+						const waveX = Math.cos(secondaryAngle) * secondaryRadius * 0.3;
+						const waveY = Math.sin(secondaryAngle) * secondaryRadius * 0.3;
+
+						gsap.fromTo(particle, 
 							{
 								opacity: 0,
 								scale: 0,
 								x: 0,
 								y: 0,
+								z: 0,
+								rotation: 0,
+								filter: "hue-rotate(0deg) saturate(100%)"
 							},
 							{
 								opacity: 1,
-								scale: gsap.utils.random(2, 5),
-								x: gsap.utils.random(-150, 150),
-								y: gsap.utils.random(-150, 150),
-								rotation: gsap.utils.random(0, 720),
-								duration: 1.5,
+								scale: gsap.utils.random(4, 8),
+								x: targetX + waveX,
+								y: targetY + waveY,
+								z: gsap.utils.random(-50, 50),
+								rotation: primaryAngle * (180 / Math.PI) + 1080,
+								filter: `hue-rotate(${gsap.utils.random(0, 360)}deg) saturate(200%)`,
+								duration: 3,
 								ease: "expo.out",
-								delay: index * 0.03 + pIndex * 0.08,
+								delay: index * 0.015 + pIndex * 0.03
 							}
 						);
+
+						// Multi-layered orbital mechanics with quantum fluctuations
+						gsap.to(particle, {
+							rotation: `+=${gsap.utils.random(720, 1440)}`,
+							x: `+=${gsap.utils.random(-50, 50)}`,
+							y: `+=${gsap.utils.random(-50, 50)}`,
+							scale: `*=${gsap.utils.random(0.5, 1.5)}`,
+							duration: 6,
+							ease: "sine.inOut",
+							repeat: -1,
+							yoyo: true,
+							delay: index * 0.015 + pIndex * 0.03
+						});
+
+						// Cosmic breathing effect
+						gsap.to(particle, {
+							opacity: "+=0.3",
+							scale: "+=1",
+							duration: 2,
+							ease: "sine.inOut",
+							repeat: -1,
+							yoyo: true,
+							delay: index * 0.02 + pIndex * 0.05
+						});
 					});
 				}
 			});
 
-			// Master text shadow explosion
+			// Epic multi-layered text shadow with smooth cosmic gradients
 			gsap.to(characterRefs.current, {
 				textShadow: [
 					"0 0 50px rgba(59, 130, 246, 1)",
-					"0 0 100px rgba(147, 51, 234, 0.8)",
-					"0 0 150px rgba(236, 72, 153, 0.6)",
-					"0 0 200px rgba(34, 197, 94, 0.4)",
-					"0 0 250px rgba(251, 146, 60, 0.3)",
+					"0 0 100px rgba(99, 102, 241, 0.8)",
+					"0 0 150px rgba(139, 92, 246, 0.6)",
+					"0 0 200px rgba(167, 139, 250, 0.5)",
+					"0 0 250px rgba(196, 181, 253, 0.4)",
+					"0 0 300px rgba(221, 214, 254, 0.3)"
 				].join(", "),
-				duration: 0.8,
+				duration: 1.5,
 				ease: "expo.out",
 				stagger: {
-					amount: 0.6,
+					amount: 1.2,
 					from: "center",
 					ease: "power3.out",
 				},
+			});
+
+			// Completely smooth filter transition with cosmic enhancement
+			gsap.to(characterRefs.current, {
+				filter: "saturate(180%) brightness(130%) contrast(150%) hue-rotate(15deg)",
+				duration: 1.2,
+				ease: "sine.inOut",
+				stagger: 0.025
+			});
+
+			// Additional cosmic glow effect
+			gsap.to(characterRefs.current, {
+				textShadow: [
+					"0 0 60px rgba(59, 130, 246, 1)",
+					"0 0 120px rgba(99, 102, 241, 0.9)",
+					"0 0 180px rgba(139, 92, 246, 0.7)",
+					"0 0 240px rgba(167, 139, 250, 0.6)",
+					"0 0 300px rgba(196, 181, 253, 0.5)",
+					"0 0 360px rgba(221, 214, 254, 0.4)",
+					"0 0 420px rgba(240, 238, 255, 0.3)"
+				].join(", "),
+				duration: 2,
+				ease: "sine.inOut",
+				delay: 1.5,
+				stagger: 0.05
 			});
 		};
 
