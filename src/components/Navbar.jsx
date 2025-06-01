@@ -73,7 +73,7 @@ const NavBar = () => {
 						<img
 							src="./img/logo.png"
 							alt="logo"
-							className="w-10 rounded-b-full"
+							className="w-10 cursor-pointer rounded-b-full transition-all duration-300 ease-in-out hover:scale-110 hover:rotate-360 hover:shadow-lg hover:shadow-blue-500/50"
 						/>
 
 						<Button
